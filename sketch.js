@@ -9,40 +9,57 @@
 
 let campoIdade;
 let campoFantasia;
+let campoAventura;
 
 function setup() {
   createCanvas(800, 400);
   createElement("h1", "Recomendador de Filmes by:BLACKDEL")
   createSpan("Sua idade:")
   campoIdade = createInput("16");
-  campoFantasia = createCheckbox("gosta de fantasia?");
+  campoFantasia = createCheckbox("gosta de Fantasia?");
+  campoAventura = createCheckbox("Gosta de Aventura?");
 }
 
 function draw() {
   background("white");
   let idade = campoIdade.value();
   let gostaDeFantasia = campoFantasia.checked();
-  let recomendacao = geraRecomendacao(idade, gostaDeFantasia);
+  let gostaDeAventura = campoAventura.checked();
+  let recomendacao = geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura);
+  
+  
   fill(color(255,0,0));
   textAlign(CENTER, CENTER);
   textSize(38);
   text(recomendacao, width / 2, height / 2);
 }
 
-function geraRecomendacao(idade, gostaDeFantasia){
+function geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura){
   if (idade >= 16) {
     if(idade >= 18) {
       return "Cidade de Deus"
     } else {
-      if(gostaDeFantasia) {
-        return "Harry potter";
-      } else {
-        return "Clube da luta";
+      if (idade >= 14){
+        if (gostaDeFantasia || gostaDeAventura) {
+          return "Deadpool"
+        } else {
+          return "Enola Holmes"
+        }
+      }else {
+        if (idade >=14) {
+            return "homem aranha no aranha  verso"
+          } else {
+        }
+        if(gostaDeFantasia) {
+          return "Harry potter";
+        } else {
+          return "Clube da luta";
+        }
       }
     }
     
   } else {
-    if(gostaDeFantasia) {
+    if(gostaDeFantasia || gostaDeAventura) {
       return "Os vingadores";
     } else{
       return "Forrest Gump";
